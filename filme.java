@@ -1,22 +1,25 @@
 import java.util.Scanner;
-import java.util.logging.Logger;
+import java.io.FileNotFoundException;
+import java.io.File;
 public class Main
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws FileNotFoundException
 	{
         // inicia classes de alguns filmes, temporário.
         Filme shika=new Filme(1,"o chamado","terror","Uma garota que mata depois que assiste uma fita");
         Filme shika1=new Filme(2,"O alien","terror","Um ser de outro mundo que invadiu uma nave e caça os tripulantes");
-        Filme shika2=new Filme(3,"a extinção","aventura","A humanidade chegou ao climax de sua existência, será seu fim?");
+        Filme shika2=new Filme(3,"a extinção","aventura","A humanidade chegou ao climax de sua existência,será, seu fim?");
         Filme[] filmes={shika,shika1,shika2};
 
-        Avaliacao neko=new Avaliacao(1,"Daniel",3,"Sério?Só fechar televisão, da uma voadora nela!");
+        //Filme[] filmes1=criaVetor(10);
+        
+        Avaliacao neko=new Avaliacao(1,"Daniel",3,"saiu?Da fechar televisão, da uma voadora nela!");
         Avaliacao neko1=new Avaliacao(1,"Lucas",3,"Poderia ter ido ver o filme do pele!");
         Avaliacao neko2=new Avaliacao(1,"Misaki",4,"Comprei a passagem para Marte, beijinhos!");
 
         Avaliacao usagi=new Avaliacao(2,"Emilie",4,"Isso não existe");
         Avaliacao usagi1=new Avaliacao(2,"Dean",1,"Nada que um colt não resolva!");
-        Avaliacao usagi2=new Avaliacao(2,"Sam",3,"Mato deus o que serão aliens!");
+        Avaliacao usagi2=new Avaliacao(2,"Sam",3,"Mato deuses, o que será aliens?");
 
         Avaliacao inu=new Avaliacao(3,"Dinossauro",5,"Finalmente, uma reprise!");
         Avaliacao inu1=new Avaliacao(3,"Astrounauta",3,"Que vista!");
@@ -24,8 +27,13 @@ public class Main
         
         Avaliacao[] opinioes={neko,neko1,neko2,usagi,usagi1,usagi2,inu,inu1,inu2}; 
         
+	Filme[] filmes2=lerFile(7);
+	Videoteca acervo2=new Videoteca(filmes2);
+	acervo2.exibirTudo();
         Videoteca acervo=new Videoteca(filmes);
         Opinioes comentarios=new Opinioes(opinioes);
+        acervo.exibirTudo();
+        comentarios.exibirTudo();
 	}
     public static Filme entrada()
     {
@@ -38,7 +46,7 @@ public class Main
         input.close();
         return shika;
     }
-    public Filme[] criaVetor(int tam)
+    public static Filme[] criaVetor(int tam)
     {
         Filme[] filmes = new Filme[tam];
         for(int i=0 ; i<filmes.length ; i++)
@@ -48,6 +56,21 @@ public class Main
         }
         return filmes;
     }
+	public static Filme[] lerFile(int tam) throws FileNotFoundException
+	{
+		File arquivo = new File("movies.txt");
+        Scanner sc = new Scanner(arquivo);
+		int i=0;
+		Filme[] filmes=new Filme[tam];
+		while(sc.hasNextLine())
+		{
+			String line=sc.nextLine();
+			String split[] = line.split(";", 4);
+			filmes[i]=new Filme(Integer.parseInt(split[0]),split[1],split[2],split[3]);
+			i++;
+		}
+		return filmes;
+	}
 }
 class Filme
 {
@@ -55,12 +78,21 @@ class Filme
     private String nome;
     private String genero;
     private String sinopse;
+	private File imagem;
     Filme(int codigo,String nome,String genero,String sinopse)
     {
         this.codigo=codigo;
-        this.nome=nome;
-        this.genero=genero;
-        this.sinopse=sinopse;
+        this.nome=nome.toLowerCase();
+        this.genero=genero.toLowerCase();
+        this.sinopse=sinopse.toLowerCase();
+    }
+	Filme(int codigo,String nome,String genero,String sinopse,File image)
+    {
+        this.codigo=codigo;
+        this.nome=nome.toLowerCase();
+        this.genero=genero.toLowerCase();
+        this.sinopse=sinopse.toLowerCase();
+		this.imagem=image;
     }
     //Métodos de colocar valores
     public void setCodigo(int cod)
@@ -69,16 +101,21 @@ class Filme
     }
     public void setNome(String nom)
     {
-        this.nome=nom;
+        this.nome=nom.toLowerCase();
     }
     public void setGenero(String tipo)
     {
-        this.genero=tipo;
+        this.genero=tipo.toLowerCase();
     }
     public void setSinopse(String descricao)
     {
-        this.sinopse=descricao;
+        this.sinopse=descricao.toLowerCase();
     }
+	public void setImagem(File image)
+	{
+		//this.imagem=setIcon(name);
+		this.imagem=image;
+	}
     //Fim métodos set.
     //Métodos para pegar os valores dos atributos
     public String getNome()
@@ -97,6 +134,10 @@ class Filme
     {
         return this.genero;
     }
+	public File getImagem()
+	{
+		return this.imagem;
+	}
     //Fim de métodos de get. 
 }
 class Avaliacao
@@ -108,9 +149,9 @@ class Avaliacao
     Avaliacao(int codigo,String username,int nota,String comentario)
     {
         this.codigo=codigo;
-        this.username=username;
+        this.username=username.toLowerCase();
         this.nota=nota;
-        this.comentario=comentario;
+        this.comentario=comentario.toLowerCase();
     }
     public void setCodigo(int cod)
     {
@@ -118,7 +159,7 @@ class Avaliacao
     }
     public void setUsername(String name)
     {
-        this.username=name;
+        this.username=name.toLowerCase();
     }
     public void setNota(int nota)
     {
@@ -126,7 +167,7 @@ class Avaliacao
     }
     public void setComentario(String feedback)
     {
-        this.comentario=feedback;
+        this.comentario=feedback.toLowerCase();
     }
     public int getCodigo()
     {
@@ -164,6 +205,7 @@ class Videoteca
     {
         int nom;
         int ption;
+        palavra=palavra.toLowerCase();
         for(int i=0;i<filmes.length;i++)
         {
             nom=this.filmes[i].getNome().indexOf(palavra);
@@ -200,7 +242,7 @@ class Videoteca
             for(int i=0;i<getFilmes().length;i++)
             {
                 
-                if (op==getFilmes()[i].getGenero())
+                if (op.toLowerCase()==getFilmes()[i].getGenero())
                 {
                     System.out.printf("[%s]%n",getFilmes()[i].getNome());
                 }
@@ -211,7 +253,7 @@ class Videoteca
     {
         for(int i=0;i<getFilmes().length;i++)
         {
-            System.out.printf(" Codigo do filme: %d%n Nome do filme: %s%n Genero: %s%n Sinopse: %s%n%n",getFilmes()[i].getCodigo(), getFilmes()[i].getNome(), getFilmes()[i].getGenero(),getFilmes()[i].getSinopse();
+            System.out.printf(" Codigo do filme: %d%n Nome do filme: %s%n Genero: %s%n Sinopse: %s%n%n",getFilmes()[i].getCodigo(), getFilmes()[i].getNome(), getFilmes()[i].getGenero(),getFilmes()[i].getSinopse());
         }
     }
 }
@@ -244,7 +286,7 @@ class Opinioes
         }
         if (soma==0)
         {
-            System.out.printf("Nenhum filme encontrado com esse identificado0.r");
+            System.out.printf("Nenhum filme encontrado com esse identificador");
             return 0;
         }
         return media/soma;
@@ -270,7 +312,6 @@ class Opinioes
                     melhor=nota;
                     //pos=i;
                 }
-                free(nota);
             }
         }
         if (melhor==-1)
@@ -282,7 +323,7 @@ class Opinioes
     }
     public int piorAvaliacao(int codigo)
     {
-        int pior=66666666666;
+        int pior=666666;
         //int pos=-1;
         ////Pensei em fazer um que mostra a posição da pior nota mas como a questão não pediu
         ////Retirei, e deixei como está.
@@ -301,10 +342,9 @@ class Opinioes
                     pior=nota;
                     //pos=i;
                 }
-                free(nota);
             }
         }
-        if (pior==66666666666)
+        if (pior==666666)
         {
             System.out.printf("Nenhum filme encontrado com esse código.");
             return pior;
@@ -315,7 +355,7 @@ class Opinioes
     {
         for(int i=0;i<getFeedback().length;i++)
         {
-            System.out.printf(" Codigo do filme: %d%n Usuário: %s%n Nota: %d%n Comentário: %s%n%n",getFeedback()[i].getCodigo(), getFeedback()[i].getUsername(), getFeedback()[i].getNota(),getFeedback()[i].getComentario();
+            System.out.printf(" Codigo do filme: %d%n Usuário: %s%n Nota: %d%n Comentário: %s%n%n",getFeedback()[i].getCodigo(), getFeedback()[i].getUsername(), getFeedback()[i].getNota(),getFeedback()[i].getComentario());
         }
     }
 }

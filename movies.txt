@@ -1,0 +1,7 @@
+4;dracula;terror;um vampiro mais famoso do cinema está em busca de vingança;
+5;o massacre da serra-eletrica;terror;uma familia canibal que ataca viajantes com um maniaco com uma arma mortal;
+6;it;terror;o mal está em busca de uma refeição e esse mal a encontrou.;
+7;vingadores ultimate;;aventura;um bando de herois saem em busca de avenge contra thanos.;
+8;iron man;comedia;um playboy,excentrico,filantropo e bilionario desenvolveu uma armadura capaz de mudar a história de armamentos;
+9;o exorcismo;terror;conta a hístoria do primeiro caso de exorcismo realizado por padres a uma mulher.;
+10;o patriota;guerra;um soldado e pai recluso se uni a causa ao perder seus filhos durante o conflito.;

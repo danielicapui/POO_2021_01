@@ -15,7 +15,7 @@ public class Jogador {
    {
      return this.pontos;
    }
-   public int setPontos(int pontos)
+   public void setPontos(int pontos)
    {
      this.pontos=pontos;
    }
@@ -27,7 +27,7 @@ public class Jogador {
    {
      return this.nome;
    }
-   public int adicionaPontuacao(Carta carta1, Carta carta2)
+{}   public void adicionaPontuacao(Carta carta1, Carta carta2)
    {
     
     this.setPontos(this.getPontos()+carta1.getPontos()+carta2.getPontos());

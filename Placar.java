@@ -1,4 +1,5 @@
 package deck.carta;
+import javax.swing.JLabel;
 //import Jogo;
 public class Placar
 {
@@ -65,7 +66,7 @@ public class Placar
       			System.out("Algo inesperado aconteceu!");
       		}
     	}
-	public void mudarPlacar(Jlabel label_nome,String text)
+	public void mudarPlacar(JLabel label_nome,String text)
 	{
 		label_nome.setText(text);
 	}

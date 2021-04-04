@@ -1,4 +1,4 @@
-package deck.carta;
+package deck.carta.Jogador;
 import javax.swing.*;
 class Gui
 {

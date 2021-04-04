@@ -1,6 +1,8 @@
 		
 package deck.carta;
 import javax.swing;
+import java.util.*;
+
 public class CartaBaralho {
     
     private Carta carta;
@@ -29,7 +31,10 @@ public class CartaBaralho {
     {
       return imagem;
     }
-    
+   public static CartaBaralho[] embaralharBaralho(CartaBaralho[] baralho)
+   {
+   	
+   }
     public static CartaBaralho [] geraBaralho (){
         int tamanhoBaralho = Naipe.values().length * Carta.values().length;
         String imagem_nome;
@@ -52,9 +57,14 @@ public class CartaBaralho {
     
     public static void main(String[] args) {
         CartaBaralho meuBaralho [] = CartaBaralho.geraBaralho();
-        for(CartaBaralho minhaCarta : meuBaralho)
+        for(CartaBaralho minhaCarta : meuBaralho){
             System.out.println (minhaCarta.getCarta().getNome() + " de " +
-                    minhaCarta.getNaipe().getNome());
+                    minhaCarta.getNaipe().getNome());}
+   	 CartaBaralho[] milly_mao=[meuBaralho[7],meuBaralho[5],[meuBaralho[2],meuBaralho[43],meuBaralho[52]];
+	 CartaBaralho[]ana_mao=[meuBaralho[1],meuBaralho[8],[meuBaralho[9],meuBaralho[31],meuBaralho[35]];
+	 Jogador milly=new Jogador("Milly",milly_mao);
+  	 Jogador ana=new Jogador("Ana",ana_mao);
+	 GUI jogo=new GUI(milly,ana);
     }
-    
+  				 
 }

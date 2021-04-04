@@ -10,7 +10,12 @@ public class CartaBaralho {
     public CartaBaralho(Carta carta, Naipe naipe,String nome) {
         this.carta = carta;
         this.naipe = naipe;
-        this.imagem=new ImageIcon(nome);
+	//caso a pasta imagem não estejam no local substituia o método para a localização
+	//this.imagem=new ImageIcon("imagem_carta/".concat(nome));
+        this.imagem=new ImageIcon(nome)
+	//relativo da pasta e projeto
+	//this.imagem=new ImageIcon(getClass().getResource("/pacoteprojeto/imagem_carta/imagens.jpg")
+	
     }
 
     public Carta getCarta() {
@@ -35,7 +40,10 @@ public class CartaBaralho {
         
             for(Carta carta : Carta.values())
             {
-                imagem_nome=carta.getNome().concat(naipe.getNome());
+                //Se as imagens estiverem no mesmo diretório podem usar do jeito que está.
+		imagem_nome=carta.getNome().concat(naipe.getNome());
+		//Caso as imagens estiverem em outro diretório use
+		//coloque as imagens a pasta das imagens no src do seu projeto. Ou na mesma localização dos arquivos classes para pode ser acessados.
                 baralho [idx++] = new CartaBaralho(carta,naipe,imagem_nome);
             }
         }

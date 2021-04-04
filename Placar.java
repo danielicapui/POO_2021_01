@@ -1,5 +1,10 @@
 package deck.carta;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.Icon; 
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+
 //import Jogo;
 public class Placar
 {

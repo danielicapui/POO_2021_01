@@ -8,7 +8,6 @@ public enum Carta {
         
     private final String nome;
     private final int pontos;
-    private final ImageIcon imagem;
     private Carta(String nome, int pontos) 
     {
         this.nome = nome;
@@ -23,13 +22,6 @@ public enum Carta {
     public int getPontos() {
         return this.pontos;
     }
-    public Image getImagem()
-    {
-        return this.imagem;   
-    }
-    public void setImagem(String nome)
-    {
-        this.imagem=new ImageIcon(nome.concat(".png"));   
-    }
+   
     
 }

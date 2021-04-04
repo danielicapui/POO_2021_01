@@ -1,4 +1,4 @@
-package deck.carta;
+package deck.carta.CartaBaralho;
 
 public class Jogador {
    private static final int cartas_no_jogo=5;
@@ -27,7 +27,7 @@ public class Jogador {
    {
      return this.nome;
    }
-   public void adicionaPontuacao(Carta carta1, Carta carta2)
+   public void adicionaPontuacao(CartaBaralho carta1, CartaBaralho carta2)
    {
     
     this.setPontos(this.getPontos()+carta1.getPontos()+carta2.getPontos());

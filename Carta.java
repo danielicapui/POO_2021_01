@@ -1,5 +1,5 @@
 package deck.carta;
-
+import javax.swing.*;
 public enum Carta {
     
     DOIS("2", 2), TRES("3", 3), QUATRO("4", 4), CINCO("5", 5), SEIS("6", 6), 
@@ -8,11 +8,12 @@ public enum Carta {
         
     private final String nome;
     private final int pontos;
- 
+    private final ImageIcon imagem;
     private Carta(String nome, int pontos) 
     {
         this.nome = nome;
         this.pontos = pontos;
+        //this.imagem=new ImageIcon(nome.concat(".png);
     }
 
     public String getNome() {
@@ -21,6 +22,14 @@ public enum Carta {
 
     public int getPontos() {
         return this.pontos;
+    }
+    public Image getImagem()
+    {
+        return this.imagem;   
+    }
+    public void setImagem(String nome)
+    {
+        this.imagem=new ImageIcon(nome.concat(".png"));   
     }
     
 }

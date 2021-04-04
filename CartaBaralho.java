@@ -1,5 +1,5 @@
 		
-package deck.carta;
+package deck.carta.*;
 import javax.swing;
 import java.util.*;
 

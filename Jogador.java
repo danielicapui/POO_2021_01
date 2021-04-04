@@ -3,9 +3,9 @@ package deck.carta;
 public class Jogador {
    private static final int cartas_no_jogo=5;
    private final String nome;
-   private final Carta[] mao;
+   private final CartaBaralho[] mao;
    private int pontos;
-   Jogador(String nome,Carta[] Mao)
+   Jogador(String nome,CartaBaralho[] Mao)
    {
      this.nome=nome;
      this.mao=Mao;
@@ -19,7 +19,7 @@ public class Jogador {
    {
      this.pontos=pontos;
    }
-   public Carta[] getMao()
+   public CartaBaralho[] getMao()
    {
      return this.mao;
    }
